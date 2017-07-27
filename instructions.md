@@ -2,7 +2,7 @@
 
 ## Objectives
 
-- Update the api defined in this repo to send data back and forth to a mysql database as well as the existing
+- Update the api defined in this repo to send data back and forth to a mysql database as well as a couch database.
 
 - Use environment variables to control:
   - The database platform (CouchDB or MySQL) the api "talks" to.
@@ -49,7 +49,7 @@ Successfully complete the first 4 steps to receive a grade of 'Meets Expectation
 
 - Using a foreign key relationship, ensure each cat has a matching corresponding breed id.  Do not allow the deletion of a breed if the cat table contains corresponding record.
 
-- Similar to previous **baseball.sql** example, create a **cats.sql** script file to create the database, tables, foreign keys and data.  Place the script within the **sql-scripts** folder.
+- Similar to the previous **baseball.sql** [example](http://mysql.how2js.com/10-joins/1), create a **cats.sql** script file to create the database, tables, foreign keys and data.  Place the script within the **sql-scripts** folder.
 
 ### Step 2
 
@@ -63,7 +63,7 @@ Successfully complete the first 4 steps to receive a grade of 'Meets Expectation
 
 Update the api defined in this repo to send data back and forth to a mysql database as well as the existing CouchDB database. Create a **dal-sql.js** file used to interact with a mysql database named **cats**.
 
-- Ensure the api utilizes the same JSON schema for the mysql database as the CouchDB database.  Key names and data types within the JSON should remain the same.
+- Ensure the api utilizes the same JSON schema for the mysql database as the CouchDB database.  When calling the endpoints the JSON key names and data types should remain the same.
 
 - Ensure the following endpoints work for both a CouchDB and a MySQL database.  
 
@@ -82,7 +82,7 @@ Update the api defined in this repo to send data back and forth to a mysql datab
   - UDPATE: `PUT /breeds/:id`
   - DELETE: `DELETE /breeds/:id`
 
-    >  Do not allow the deletion of a breed if the cat table contains corresponding record.  Send an 409 HTTP response with a message stating corresponding animal data exists for the breed you are attempting to delete.  Also include instructions on how to resolve the issue by removing all cats for the given breen.  A '409 Conflict' should be used when the request could not be completed due to a conflict with the current state of the resource. This code is only allowed in situations where it is expected that the user might be able to resolve the conflict and resubmit the request. The response body SHOULD include enough information for the user to recognize the source of the conflict. Ideally, the response entity would include enough information for the user or user agent to fix the problem.
+    >  For the mysql dal (not the CouchDB dal), do not allow the deletion of a breed if the cat table contains corresponding record.  Send an 409 HTTP response with a message stating corresponding animal data exists for the breed you are attempting to delete.  Also include instructions on how to resolve the issue by removing all cats for the given breed.  A '409 Conflict' should be used when the request could not be completed due to a conflict with the current state of the resource. This code is only allowed in situations where it is expected that the user might be able to resolve the conflict and resubmit the request. The response body SHOULD include enough information for the user to recognize the source of the conflict. Ideally, the response entity would include enough information for the user or user agent to fix the problem.
 
     [https://http.cat/409](https://http.cat/409)
     [http://www.restapitutorial.com/httpstatuscodes.html](http://www.restapitutorial.com/httpstatuscodes.html)
@@ -105,7 +105,7 @@ Modify existing developer on-boarding instructions by creating within your **REA
 
 Create a new endpoint `GET /breeds/reports/countweight`.
 
-Return JSON to support the following report mock up. 
+Return JSON to support the following report mock up.
 
 breed   | count |  avgWeight  |  maxWeight  | minWeight
 --------|-------|---------------------------------------
