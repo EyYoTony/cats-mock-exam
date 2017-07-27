@@ -24,7 +24,7 @@ const addCat = (cat, callback) => {
   add(cat, callback)
 }
 const getCat = (catId, callback) => get(catId, callback)
-const updateCat = (updatedCat, callback) => update(updatedCat, callback)
+const updateCat = (updatedCat, id, callback) => update(updatedCat, callback)
 const deleteCat = (catId, callback) => deleteDoc(catId, callback)
 
 const listCats = (lastItem, filter, limit, callback) => {
@@ -70,7 +70,8 @@ const addBreed = (breed, callback) => {
   add(breed, callback)
 }
 const getBreed = (breedId, callback) => get(breedId, callback)
-const updateBreed = (updatedBreed, callback) => update(updatedBreed, callback)
+const updateBreed = (updatedBreed, id, callback) =>
+  update(updatedBreed, callback)
 const deleteBreed = (breedId, callback) => deleteDoc(breedId, callback)
 
 const listBreeds = (lastItem, limit, callback) => {

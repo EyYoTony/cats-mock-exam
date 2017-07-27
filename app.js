@@ -93,7 +93,7 @@ app.put('/cats/:id', function(req, res, next) {
     )
   }
 
-  dal.updateCat(requestBodyCat, function(err, data) {
+  dal.updateCat(requestBodyCat, catId, function(err, data) {
     if (err) return next(new HTTPError(err.status, err.message, err))
     res.status(200).send(data)
   })
@@ -214,7 +214,7 @@ app.put('/breeds/:id', function(req, res, next) {
     )
   }
 
-  dal.updateBreed(requestBodyBreed, function(err, data) {
+  dal.updateBreed(requestBodyBreed, breedId, function(err, data) {
     if (err) return next(new HTTPError(err.status, err.message, err))
     res.status(200).send(data)
   })
