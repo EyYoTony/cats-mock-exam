@@ -38,8 +38,6 @@
 
 ## Steps
 
-Successfully complete the first 4 steps to receive a grade of 'Meets Expectations'. Complete step 5 to receive a grade of 'Above Expectations'.
-
 ### Step 1
 
 - Create a database, tables and data within a mysql database.  Include the following tables:
