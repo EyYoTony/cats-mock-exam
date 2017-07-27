@@ -74,11 +74,24 @@ const updateBreed = (updatedBreed, id, callback) =>
   update(updatedBreed, callback)
 const deleteBreed = (breedId, callback) => deleteDoc(breedId, callback)
 
-const listBreeds = (lastItem, limit, callback) => {
-  const query = lastItem
-    ? { selector: { _id: { $gt: lastItem }, type: 'breed' }, limit }
-    : { selector: { _id: { $gt: null }, type: 'breed' }, limit }
+const listBreeds = (lastItem, filter, limit, callback) => {
+  var query = {}
 
+  if (filter) {
+    const arrFilter = split(':', filter)
+    const filterField = head(arrFilter)
+    const filterValue = last(arrFilter)
+    const selectorValue = {}
+    selectorValue[filterField] = Number(filterValue)
+      ? Number(filterValue)
+      : filterValue
+    query = { selector: selectorValue, limit }
+  } else if (lastItem) {
+    query = { selector: { _id: { $gt: lastItem }, type: 'breed' }, limit }
+  } else {
+    query = { selector: { _id: { $gt: null }, type: 'breed' }, limit }
+  }
+  console.log('query:', query)
   findDocs(query, callback)
 }
 
