@@ -31,6 +31,13 @@ Using the principle of least privilege, you may wish to create a second API key 
   - `COUCHDB_NAME`
   - `PORT`
 
+If you are using a *mySQL* database, you will need to add these variables to your **.env** file. `MYSQL_HOST` is the ip address that you use to connect to your *mySQL* database (which defaults to 127.0.0.1). `MYSQL_USER`/`MYSQL_USER` is your login credential for your database (which defaults to *root*). `MYSQL_DATABASE` is the *schema* that you will be using in your database.
+
+  - `MYSQL_HOST`
+  - `MYSQL_USER`
+  - `MYSQL_PASSWORD`
+  - `MYSQL_DATABASE`
+
 For example, here are example values for `COUCHDB_URL` and `COUCHDB_NAME` environment variables for an instance of CouchDB running in IBM Blue Mix's Cloudant service:
 
 > Warning:  Keep your API password/secret safe!  Be sure your **.env** file is referenced within your **.gitignore**.  Do not expose the secret in GitHub or anywhere else.  If your secret is compromised, you will need to regenerate a new API key and secret and update your application.
@@ -59,6 +66,13 @@ $ npm install
 $ npm run load
 $ npm run loadIndex
 $ npm start
+```
+
+If you are using a *mySQL* server, you can run these commands to start up your *schema* and *tables*
+
+```
+$ cd sql-scripts
+$ mysql < cats.sql -u root -p -h 127.0.0.1 -P 3306
 ```
 
 Check your terminal and verify the API starts.  Attempt the following HTTP requests using a client such as your browser or POSTman.
@@ -112,6 +126,7 @@ All endpoints accept and return data formatted as JSON.   See Request Headers.
 - 201 - Created
 - 400 - Bad Request
 - 404 - Not Found
+- 409 - Conflict
 - 500 - Internal Server Error
 - 429 - Too Many Request
 
