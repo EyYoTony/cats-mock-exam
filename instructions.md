@@ -101,11 +101,37 @@ Modify existing developer on-boarding instructions by creating within your **REA
 
 ### Step 5 - Reporting
 
-Create a new endpoint `GET /breeds/reports/countweight`.
+Create a new endpoint `GET /breeds/reports/catweightbreed`.
 
-Return JSON to support the following report mock up.
+ Return the following information:
 
-breed   | count |  avgWeight  |  maxWeight  | minWeight
---------|-------|---------------------------------------
-tabby   |  2    |     10      |     12      |    8      
-siamese |  3    |     12      |     14      |    10
+  - Report name
+  - Breed
+  - Cat count by breed
+  - Average weight by breed
+  - Max weight by breed
+  - Min weight by breed
+
+Return the following JSON structure to support the report: 
+
+  ```
+  {
+    report: "Cat Weight By Breed"
+    reportData: [
+      {
+        breedName: "tabby",
+        countByBreed: 2,
+        avgWeight: 10,
+        maxWeight: 12,
+        minWeight: 8
+      },
+      {
+        breedName: "siamese",
+        countByBreed: 3,
+        avgWeight: 12,
+        maxWeight: 14,
+        minWeight: 10
+      }
+    ]
+  }
+  ```
