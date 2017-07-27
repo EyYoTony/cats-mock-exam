@@ -44,3 +44,8 @@ INSERT INTO `cat` VALUES
 (8,'Nancy','owner_111',14,4,'F'),
 (9,'RJ','owner_1234',15,4,'M'),
 (10,'Tom','owner_111',11,4,'M');
+
+CREATE VIEW `vcatbreed` AS
+SELECT c.name, c.ownerId, c.weightLbs, c.gender, b.breed, b.desc 
+FROM cats.cat c
+JOIN cats.breed b WHERE b.ID = c.breedId;

@@ -234,6 +234,17 @@ app.get('/breeds', function(req, res, next) {
   })
 })
 
+/////////////////////////
+//      REPORTS
+/////////////////////////
+
+app.get('/breeds/reports/catweightbreed', function(req, res, next) {
+  dal.getBreedReportCWB(function(err, data) {
+    if (err) return next(new HTTPError(err.status, err.message, err))
+    res.status(200).send(data)
+  })
+})
+
 app.use(function(err, req, res, next) {
   console.log(req.method, ' ', req.path, ' ', 'error: ', err)
   res.status(err.status || 500)

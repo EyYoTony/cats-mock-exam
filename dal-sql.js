@@ -58,6 +58,37 @@ const listBreeds = (lastItem, filter, limit, callback) => {
   )
 }
 
+//////////////////////
+//     REPORTS
+//////////////////////
+
+const getBreedReportCWB = callback => {
+  const connection = createConnection()
+  connection.query(
+    `SELECT b.breed, COUNT(b.breed) AS countByBreed, AVG(c.weightLbs) AS avgWeight, MAX(c.weightLbs) AS maxWeight, MIN(c.weightLbs) AS minWeight FROM cat c JOIN breed b ON b.ID = c.breedId GROUP BY b.breed`,
+    function(err, result) {
+      if (err) return callback(err)
+      return callback(null, {
+        report: 'Cat Weight By Breed',
+        reportData: result
+      })
+    }
+  )
+}
+
+const createConnection = () => {
+  return mysql.createConnection({
+    user: process.env.MYSQL_USER,
+    host: process.env.MYSQL_HOST,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE
+  })
+}
+
+//////////////////////
+//    FORMATTERS
+//////////////////////
+
 const prepSQLCreate = data => omit('type', data)
 const prepSQLUpdate = data =>
   compose(omit('_id'), assoc('ID', data['_id']), omit('_rev'), omit('type'))(
@@ -71,6 +102,10 @@ const formatSQLtoCouch = type => data =>
     assoc('type', type)
   )(data)
 
+//////////////////////
+//     EXPORT
+//////////////////////
+
 const dal = {
   addCat,
   listCats,
@@ -81,7 +116,8 @@ const dal = {
   getBreed,
   updateBreed,
   deleteBreed,
-  listBreeds
+  listBreeds,
+  getBreedReportCWB
 }
 
 module.exports = dal
